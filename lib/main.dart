@@ -21,12 +21,12 @@ class Meeting extends StatefulWidget {
 
 class _MeetingState extends State<Meeting> {
   final serverText = TextEditingController();
-  final roomText = TextEditingController(text: "plugintestroom");
-  final subjectText = TextEditingController(text: "My Plugin Test Meeting");
-  final nameText = TextEditingController(text: "Plugin Test User");
-  final emailText = TextEditingController(text: "fake@email.com");
-  final iosAppBarRGBAColor =
-      TextEditingController(text: "#0080FF80"); //transparent blue
+  final roomText = TextEditingController(text: "default_room");
+  final subjectText = TextEditingController(text: "Meeting");
+  final nameText = TextEditingController(text: "Dids");
+  final emailText = TextEditingController(text: "reyes.dids.bscs@gmail.com");
+  //final iosAppBarRGBAColor =
+  //    TextEditingController(text: "#0080FF80"); //transparent blue
   bool? isAudioOnly = true;
   bool? isAudioMuted = true;
   bool? isVideoMuted = true;
@@ -53,7 +53,8 @@ class _MeetingState extends State<Meeting> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Jitsi Meet Flutter'),
+          backgroundColor: Colors.green,
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(
@@ -100,13 +101,13 @@ class _MeetingState extends State<Meeting> {
           SizedBox(
             height: 16.0,
           ),
-          TextField(
-            controller: serverText,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Server URL",
-                hintText: "Hint: Leave empty for meet.jitsi.si"),
-          ),
+          //TextField(
+          //  controller: serverText,
+          //  decoration: InputDecoration(
+          //      border: OutlineInputBorder(),
+          //      labelText: "Server URL",
+          //      hintText: "Hint: Leave empty for meet.jitsi.si"),
+          //),
           SizedBox(
             height: 14.0,
           ),
@@ -114,7 +115,7 @@ class _MeetingState extends State<Meeting> {
             controller: roomText,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: "Room",
+              labelText: "Room Name",
             ),
           ),
           SizedBox(
@@ -124,7 +125,7 @@ class _MeetingState extends State<Meeting> {
             controller: subjectText,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: "Subject",
+              labelText: "Subject or Title of the Meeting",
             ),
           ),
           SizedBox(
@@ -150,35 +151,38 @@ class _MeetingState extends State<Meeting> {
           SizedBox(
             height: 14.0,
           ),
-          TextField(
-            controller: iosAppBarRGBAColor,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "AppBar Color(IOS only)",
-                hintText: "Hint: This HAS to be in HEX RGBA format"),
-          ),
+          //TextField(
+          //  //controller: iosAppBarRGBAColor,
+          //  decoration: InputDecoration(
+          //      border: OutlineInputBorder(),
+          //      labelText: "AppBar Color(IOS only)",
+          //      hintText: "Hint: This HAS to be in HEX RGBA format"),
+          //),
           SizedBox(
             height: 14.0,
           ),
           CheckboxListTile(
-            title: Text("Audio Only"),
+            title: Text("Start with Audio Only"),
             value: isAudioOnly,
+            activeColor: Colors.green,
             onChanged: _onAudioOnlyChanged,
           ),
           SizedBox(
             height: 14.0,
           ),
           CheckboxListTile(
-            title: Text("Audio Muted"),
+            title: Text("Connect to Meeting with Audio Muted"),
             value: isAudioMuted,
+            activeColor: Colors.green,
             onChanged: _onAudioMutedChanged,
           ),
           SizedBox(
             height: 14.0,
           ),
           CheckboxListTile(
-            title: Text("Video Muted"),
+            title: Text("Connect to Meeting with No Video"),
             value: isVideoMuted,
+            activeColor: Colors.green,
             onChanged: _onVideoMutedChanged,
           ),
           Divider(
@@ -186,19 +190,19 @@ class _MeetingState extends State<Meeting> {
             thickness: 2.0,
           ),
           SizedBox(
-            height: 64.0,
+            height: 40.0,
             width: double.maxFinite,
             child: ElevatedButton(
               onPressed: () {
                 _joinMeeting();
               },
               child: Text(
-                "Join Meeting",
-                style: TextStyle(color: Colors.white),
+                "Create/Join Meeting",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
               ),
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateColor.resolveWith((states) => Colors.blue)),
+                      MaterialStateColor.resolveWith((states) => Colors.green)),
             ),
           ),
           SizedBox(
@@ -252,7 +256,7 @@ class _MeetingState extends State<Meeting> {
       ..subject = subjectText.text
       ..userDisplayName = nameText.text
       ..userEmail = emailText.text
-      ..iosAppBarRGBAColor = iosAppBarRGBAColor.text
+      //..iosAppBarRGBAColor = iosAppBarRGBAColor.text
       ..audioOnly = isAudioOnly
       ..audioMuted = isAudioMuted
       ..videoMuted = isVideoMuted
